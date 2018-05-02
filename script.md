@@ -59,8 +59,8 @@ source deactivate
 ## Data Analyses
 ### Determine data quality using FastQC
 <i> https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ </i>
-<b> Non-interactive FastQC </b>
-To download FastQC v0.11.7 I used the following command line
+<br> Non-interactive FastQC </br>
+<br> To download FastQC v0.11.7 I used the following command line </br>
 ```
 conda install fastqc
 ```
