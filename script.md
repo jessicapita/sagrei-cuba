@@ -74,7 +74,7 @@ FastQC Analysis for each sample
 fastqc *.fastq -o /home/jpita/Final_assignment/FastQC/
 ```
 
-### Trim adaoters and low quality reads
+### Trim adapters and low quality reads
 Install Trimmomatic using conda
 ```
 conda install trimmomatic
