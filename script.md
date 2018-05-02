@@ -1,7 +1,46 @@
 # <i>Anolis sagrei</i> ddRADseq Analysis
-Author: Jessica N. Pita Aquino
-Last updated: May 1, 2018
+## Author: Jessica N. Pita Aquino<br>
+### Last updated: May 1, 2018
 
-Data was uploaded and analyzed on KITT. 
+*Data was uploaded and analyzed on KITT.*
+<br>
+Working directory: jpita@kitt.uri.edu:/home/jpita/Final_assignment
 
 ### Uploading raw data to KITT
+```
+mkdir rawdata
+scp -P 2292 *.fastq.gz jpita@kitt.uri.edu:/home/jpita/Final_assignment/rawdata
+```
+
+### Verify transferred files
+To verify the integrity of the files...
+<br>
+<br>
+Original source (pwd:/Volumes/Seagate-Drive_PITA/Academics/URI/BIO594-NGS/Final_assignment/data)
+```
+md5 *.fastq.gz > sagrei_cuba_cksum1.md5
+```
+Copy output file to KITT
+```
+scp -P 2292 sagrei_cuba_cksum1.md5 jpita@kitt.uri.edu:/home/jpita/Final_assignment/cksum
+```
+Copied data
+```
+md5sum *.fastq.gz > sagrei_cuba_cksum2.md5 <br>
+```
+Compare
+```
+cksum sagrei_cuba_cksum1.md5 sagrei_cuba_cksum2.md5
+```
+Output
+```
+3386362216 4960 sagrei_cuba_cksum1.md5
+2813630852 4400 sagrei_cuba_cksum2.md5
+```
+Both files were stored in a new directory
+```
+cd /home/jpita/Final_assignment/
+mkdir cksum
+cd cksum
+mv /home/jpita/Final_assignment/rawdata/sagrei_cuba_cksum2.md5 .
+```
