@@ -44,3 +44,38 @@ Output (reason for this difference?)
 3386362216 4960 sagrei_cuba_cksum1.md5
 2813630852 4400 sagrei_cuba_cksum2.md5
 ```
+### Create a environment with conda
+```
+conda create -n sagrei
+```
+To activate this environment, use:
+```
+source activate sagrei
+```
+To deactivate an active environment, use:
+```
+source deactivate
+```
+## Data Analyses
+### Determine data quality using FastQC
+<i> https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ </i>
+<b> Non-interactive FastQC </b>
+To download FastQC v0.11.7 I used the following command line
+```
+conda install fastqc
+```
+Data files were uncompressed
+```
+gunzip *.gz
+```
+
+FastQC Analysis for each sample
+```
+fastqc *.fastq -o /home/jpita/Final_assignment/FastQC/
+```
+
+### Trim adaoters and low quality reads
+Install Trimmomatic using conda
+```
+conda install trimmomatic
+```
