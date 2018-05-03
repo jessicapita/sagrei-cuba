@@ -218,6 +218,7 @@ SOR3021_R2_.fastq:3362598
 ```
 
 
+## Data Analyses
 ### Create a environment with conda
 ```
 conda create -n sagrei
@@ -230,7 +231,7 @@ To deactivate an active environment, use:
 ```
 source deactivate
 ```
-## Data Analyses
+
 ### Determine data quality using FastQC
 <i> https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ </i>
 ### <br>Non-interactive FastQC </br>
@@ -252,5 +253,5 @@ fastqc *.fastq -o /home/jpita/Final_assignment/FastQC/
 Install Trimmomatic using conda
 ```
 conda install trimmomatic
-PE 
+java -jar trimmomatic-0.35.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:20 MINLEN:36 
 ```
