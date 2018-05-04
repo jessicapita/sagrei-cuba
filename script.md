@@ -264,10 +264,6 @@ scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_data/
 ```
 
 ### Trim adapters and low quality reads
-Install Trimmomatic using conda
-```
-conda install trimmomatic
-```
 Make a new directory and link fastq files
 ```
 mkdir trim
