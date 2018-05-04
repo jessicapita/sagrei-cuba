@@ -276,7 +276,7 @@ java -jar trimmomatic-0.36.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.f
 
 
 
-## <i>De novo</i> Alignment
+## <i>De novo</i> alignment
 ```
 dDocent
 ```
