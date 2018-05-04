@@ -249,9 +249,40 @@ FastQC Analysis for each sample
 fastqc *.fastq -o /home/jpita/Final_assignment/FastQC/
 ```
 
+### Summarize FastQC results using Multiqc
+https://github.com/ewels/MultiQC
+```
+pip install multiqc
+conda install -c bioconda multiqc
+multiqc .
+```
+
 ### Trim adapters and low quality reads
 Install Trimmomatic using conda
 ```
 conda install trimmomatic
-java -jar trimmomatic-0.35.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:20 MINLEN:36 
+```
+Make a new directory and link fastq files
+```
+mkdir trim
+ln -s /home/jpita/Final_assignment/data/*.fastq .
+
+
+```
+```
+java -jar trimmomatic-0.36.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:20 MINLEN:36 
+```
+
+
+
+
+
+
+
+
+### Put process into the background using
+```
+^Z
+bg
+disown -a
 ```
