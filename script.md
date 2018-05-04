@@ -1,6 +1,6 @@
 # Double Digest RADseq: Geographic Structure in the Cuban Brown Anole (<i>Anolis sagrei</i>)
 ## Author: Jessica N. Pita Aquino<br>
-### Last updated: May 2, 2018
+### Last updated: May 4, 2018
 
 *Data was uploaded and analyzed on KITT.*
 <br>
