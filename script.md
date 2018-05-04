@@ -218,7 +218,7 @@ SOR3021_R2_.fastq:3362598
 ```
 
 
-## Data Analyses
+## Quality Control
 ### Create a environment with conda
 ```
 conda create -n sagrei
@@ -233,7 +233,7 @@ source deactivate
 ```
 
 ### Determine data quality using FastQC
-<i> https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ </i>
+https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 ### <br>Non-interactive FastQC </br>
 <br> To download FastQC v0.11.7 I used the following command line </br>
 ```
@@ -276,10 +276,13 @@ java -jar trimmomatic-0.36.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.f
 
 
 
+## <i>De novo</i> Alignment
+```
+dDocent
+```
 
 
-
-
+## Apendice
 ### Put process into the background using
 ```
 ^Z
