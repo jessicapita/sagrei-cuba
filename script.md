@@ -267,7 +267,7 @@ scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_data/
 Make a new directory and link fastq files
 ```
 mkdir trim
-ln -s /home/jpita/Final_assignment/data/*.fastq .
+ln -s /home/jpita/Final_assignment/data/*.fastq .mkdi
 ```
 Trimmomatic Version 0.36 was downloaded as binary and transfered from local computer to KITT
 ```
@@ -275,14 +275,14 @@ scp -rp -P 2292 trimmomatic-0.36 jpita@kitt.uri.edu:/home/jpita/Final_assignment
 ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/trimmomatic-0.36.jar .
 ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/adapters/* .
 ```
-Trim adapters (TrueSeq3-PE) and low quality reads (threshold: 20)
+Trim adapters (TrueSeq2-PE) and low quality reads (quality threshold: 20)
 ```
-java -jar trimmomatic-0.36.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:20 MINLEN:36 
+java -jar trimmomatic-0.36.jar PE -phred33 *_R1_.fastq *_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq2-PE.fa:2:30:10 LEADING:5 TRAILING:5 SLIDINGWINDOW:4:20 MINLEN:50
 ```
 Output
 ```
 TrimmomaticPE: Started with arguments:
- -phred33 CAB2918_R1_.fastq CAB2919_R1_.fastq CAB2920_R1_.fastq CAB2921_R1_.fastq CAB2922_R1_.fastq CAB2923_R1_.fastq CAB2924_R1_.fastq CAB2925_R1_.fastq CAB2927_R1_.fastq CAB2931_R1_.fastq ESM2880_R1_.fastq ESM2882_R1_.fastq ESM2883_R1_.fastq ESM2886_R1_.fastq ESM2887_R1_.fastq ESM2888_R1_.fastq ESM2893_R1_.fastq ESM2895_R1_.fastq ESM2896_R1_.fastq ESM2897_R1_.fastq MAR2971_R1_.fastq MAR2972_R1_.fastq MAR2973_R1_.fastq MAR2974_R1_.fastq MAR2975_R1_.fastq MAR2977_R1_.fastq MAR2979_R1_.fastq MAR2980_R1_.fastq MAR2981_R1_.fastq MAR2990_R1_.fastq SOR3003_R1_.fastq SOR3005_R1_.fastq SOR3006_R1_.fastq SOR3007_R1_.fastq SOR3011_R1_.fastq SOR3012_R1_.fastq SOR3013_R1_.fastq SOR3017_R1_.fastq SOR3020_R1_.fastq SOR3021_R1_.fastq CAB2918_R2_.fastq CAB2919_R2_.fastq CAB2920_R2_.fastq CAB2921_R2_.fastq CAB2922_R2_.fastq CAB2923_R2_.fastq CAB2924_R2_.fastq CAB2925_R2_.fastq CAB2927_R2_.fastq CAB2931_R2_.fastq ESM2880_R2_.fastq ESM2882_R2_.fastq ESM2883_R2_.fastq ESM2886_R2_.fastq ESM2887_R2_.fastq ESM2888_R2_.fastq ESM2893_R2_.fastq ESM2895_R2_.fastq ESM2896_R2_.fastq ESM2897_R2_.fastq MAR2971_R2_.fastq MAR2972_R2_.fastq MAR2973_R2_.fastq MAR2974_R2_.fastq MAR2975_R2_.fastq MAR2977_R2_.fastq MAR2979_R2_.fastq MAR2980_R2_.fastq MAR2981_R2_.fastq MAR2990_R2_.fastq SOR3003_R2_.fastq SOR3005_R2_.fastq SOR3006_R2_.fastq SOR3007_R2_.fastq SOR3011_R2_.fastq SOR3012_R2_.fastq SOR3013_R2_.fastq SOR3017_R2_.fastq SOR3020_R2_.fastq SOR3021_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:20 MINLEN:36
+ -phred33 CAB2918_R1_.fastq CAB2919_R1_.fastq CAB2920_R1_.fastq CAB2921_R1_.fastq CAB2922_R1_.fastq CAB2923_R1_.fastq CAB2924_R1_.fastq CAB2925_R1_.fastq CAB2927_R1_.fastq CAB2931_R1_.fastq ESM2880_R1_.fastq ESM2882_R1_.fastq ESM2883_R1_.fastq ESM2886_R1_.fastq ESM2887_R1_.fastq ESM2888_R1_.fastq ESM2893_R1_.fastq ESM2895_R1_.fastq ESM2896_R1_.fastq ESM2897_R1_.fastq MAR2971_R1_.fastq MAR2972_R1_.fastq MAR2973_R1_.fastq MAR2974_R1_.fastq MAR2975_R1_.fastq MAR2977_R1_.fastq MAR2979_R1_.fastq MAR2980_R1_.fastq MAR2981_R1_.fastq MAR2990_R1_.fastq SOR3003_R1_.fastq SOR3005_R1_.fastq SOR3006_R1_.fastq SOR3007_R1_.fastq SOR3011_R1_.fastq SOR3012_R1_.fastq SOR3013_R1_.fastq SOR3017_R1_.fastq SOR3020_R1_.fastq SOR3021_R1_.fastq CAB2918_R2_.fastq CAB2919_R2_.fastq CAB2920_R2_.fastq CAB2921_R2_.fastq CAB2922_R2_.fastq CAB2923_R2_.fastq CAB2924_R2_.fastq CAB2925_R2_.fastq CAB2927_R2_.fastq CAB2931_R2_.fastq ESM2880_R2_.fastq ESM2882_R2_.fastq ESM2883_R2_.fastq ESM2886_R2_.fastq ESM2887_R2_.fastq ESM2888_R2_.fastq ESM2893_R2_.fastq ESM2895_R2_.fastq ESM2896_R2_.fastq ESM2897_R2_.fastq MAR2971_R2_.fastq MAR2972_R2_.fastq MAR2973_R2_.fastq MAR2974_R2_.fastq MAR2975_R2_.fastq MAR2977_R2_.fastq MAR2979_R2_.fastq MAR2980_R2_.fastq MAR2981_R2_.fastq MAR2990_R2_.fastq SOR3003_R2_.fastq SOR3005_R2_.fastq SOR3006_R2_.fastq SOR3007_R2_.fastq SOR3011_R2_.fastq SOR3012_R2_.fastq SOR3013_R2_.fastq SOR3017_R2_.fastq SOR3020_R2_.fastq SOR3021_R2_.fastq *_R1_paired.fastq *_R1_unpaired.fastq *_R2_paired.fastq *_R2_unpaired.fastq ILLUMINACLIP:TruSeq2-PE.fa:2:30:10 LEADING:5 TRAILING:5 SLIDINGWINDOW:4:20 MINLEN:50
 Exception in thread "main" java.lang.RuntimeException: Unknown trimmer: CAB2924_R1_.fastq
 	at org.usadellab.trimmomatic.trim.TrimmerFactory.makeTrimmer(TrimmerFactory.java:70)
 	at org.usadellab.trimmomatic.Trimmomatic.createTrimmers(Trimmomatic.java:59)
@@ -290,7 +290,7 @@ Exception in thread "main" java.lang.RuntimeException: Unknown trimmer: CAB2924_
 	at org.usadellab.trimmomatic.Trimmomatic.main(Trimmomatic.java:80)
  ```
 
-
+## Rerun FastQC/MultiQC for trimmed reads
 ```
 fastqc *.fastq -o /home/jpita/Final_assignment/FastQC_trimmed/
 unzip "*.zip"
