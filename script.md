@@ -294,7 +294,8 @@ Exception in thread "main" java.lang.RuntimeException: Unknown trimmer: CAB2924_
 ```
 fastqc *.fastq -o /home/jpita/Final_assignment/FastQC_trimmed/
 unzip "*.zip"
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trimmed/multiqc_plots/pdf/mqc_* .
+multiqc -p .
+scp -P 2292 jpita@kitt.uri.edu:/holsme/jpita/Final_assignment/FastQC_trimmed/multiqc_plots/pdf/mqc_* .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trimmed/multiqc_report.html .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trimmed/multiqc_data/* .
 ```
