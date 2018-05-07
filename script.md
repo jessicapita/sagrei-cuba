@@ -280,7 +280,7 @@ Trim adapters (TrueSeq3-PE-2) and low quality reads (quality threshold: 20) for 
 java -jar trimmomatic-0.36.jar PE -threads 20 -phred33 -trimlog MAR2990.trimlog MAR2990_R1_.fastq.gz MAR2990_R2_.fastq.gz MAR2990_trim_R1_.fastq.gz MAR2990_unpaired_R1_.fastq.gz MAR2990_trim_R2_.fastq.gz MAR2990_unpaired_R2_.fastq.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:3:15 MINLEN:36 > MAR2990.trimSTDOUT
 ```
 
-## Rerun FastQC/MultiQC for trimmed reads
+### Rerun FastQC/MultiQC for trimmed reads
 ```
 fastqc *_trim_R*_.fastq.gz -o /home/jpita/Final_assignment/FastQC_trim/
 unzip "*.zip"
