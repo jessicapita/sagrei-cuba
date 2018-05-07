@@ -275,27 +275,20 @@ scp -rp -P 2292 trimmomatic-0.36 jpita@kitt.uri.edu:/home/jpita/Final_assignment
 ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/trimmomatic-0.36.jar .
 ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/adapters/* .
 ```
-Loop through pairs of fastq files, trim adapters (TrueSeq2-PE) and low quality reads (quality threshold: 20)
+Trim adapters (TrueSeq3-PE-2) and low quality reads (quality threshold: 20) for each sample
 ```
-###
-for f in CAB2918 CAB2919 CAB2920 CAB2921 CAB2922 CAB2923 CAB2924 CAB2925 CAB2927 CAB2931 ESM2880 ESM2882 ESM2883 ESM2886 ESM2887 ESM2888 ESM2893 ESM2895 ESM2896 ESM2897 MAR2971 MAR2972 MAR2973 MAR2974 MAR2975 MAR2977 MAR2979 MAR2980 MAR2981 MAR2990 SOR3003 SOR3005 SOR3006 SOR3007 SOR3011 SOR3012 SOR3013 SOR3017 SOR3020 SOR3021;
-
-do java -jar trimmomatic-0.36.jar PE -phred33 $f_R1_.fastq $f_R2_.fastq $f_R1_paired.fastq $f_R1_unpaired.fastq $f_R2_paired.fastq $f_R2_unpaired.fastq ILLUMINACLIP:TruSeq2-PE.fa:2:30:10 LEADING:5 TRAILING:5 SLIDINGWINDOW:4:20 MINLEN:50;
-
-done
-###
+java -jar trimmomatic-0.36.jar PE -threads 20 -phred33 -trimlog MAR2990.trimlog MAR2990_R1_.fastq.gz MAR2990_R2_.fastq.gz MAR2990_trim_R1_.fastq.gz MAR2990_unpaired_R1_.fastq.gz MAR2990_trim_R2_.fastq.gz MAR2990_unpaired_R2_.fastq.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:3:15 MINLEN:36 > MAR2990.trimSTDOUT
 ```
 
 ## Rerun FastQC/MultiQC for trimmed reads
 ```
-fastqc *.fastq -o /home/jpita/Final_assignment/FastQC_trim/
+fastqc *_trim_R*_.fastq.gz -o /home/jpita/Final_assignment/FastQC_trim/
 unzip "*.zip"
 multiqc -p .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_plots/pdf/mqc_* .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_report.html .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_data/* .
 ```
-
 
 ## <i>De novo</i> alignment
 ```
@@ -305,7 +298,7 @@ dDocent
 
 ## Apendice
 ### Put process into the background using
-```
+pwd```
 ^Z
 bg
 disown -a
