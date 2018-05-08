@@ -1,6 +1,6 @@
 # Double Digest RADseq: Geographic Structure in the Cuban Brown Anole (<i>Anolis sagrei</i>)
 ## Author: Jessica N. Pita Aquino<br>
-### Last updated: May 4, 2018
+### Last updated: May 8, 2018
 
 *Data was uploaded and analyzed on KITT.*
 <br>
@@ -275,7 +275,7 @@ scp -rp -P 2292 trimmomatic-0.36 jpita@kitt.uri.edu:/home/jpita/Final_assignment
 ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/trimmomatic-0.36.jar .
 ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/adapters/* .
 ```
-Trim adapters (TrueSeq3-PE-2) and low quality reads (quality threshold: 20) for each sample
+Trim adapters (TrueSeq3-PE-2) and low quality reads (quality threshold: 20) for each sample (e.g. MAR2990)
 ```
 java -jar trimmomatic-0.36.jar PE -threads 20 -phred33 -trimlog MAR2990.trimlog MAR2990_R1_.fastq.gz MAR2990_R2_.fastq.gz MAR2990_trim_R1_.fastq.gz MAR2990_unpaired_R1_.fastq.gz MAR2990_trim_R2_.fastq.gz MAR2990_unpaired_R2_.fastq.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:3:15 MINLEN:36 > MAR2990.trimSTDOUT
 ```
