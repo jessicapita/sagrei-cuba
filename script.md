@@ -256,7 +256,8 @@ pip install multiqc
 conda install -c bioconda multiqc
 multiqc -p . #the -p/--export command line flag allows you to save the generated plots
 ```
-Export MultiQC files to local system
+Export MultiQC files to 
+system
 ```
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_plots/pdf/mqc_* .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_report.html .
@@ -283,12 +284,19 @@ java -jar trimmomatic-0.36.jar PE -threads 20 -phred33 -trimlog MAR2990.trimlog 
 ### Rerun FastQC/MultiQC for trimmed reads
 ```
 fastqc *_trim_R*_.fastq.gz -o /home/jpita/Final_assignment/FastQC_trim/
-unzip "*.zip"
 multiqc -p .
+```
+Export MultiQC files to local system
+```
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_plots/pdf/mqc_* .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_report.html .
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_data/* .
 ```
+Pre- and post-trimming via MultiQC
+![pre-trimming bp quality](
+
+
+
 
 ## <i>De novo</i> alignment
 ```
