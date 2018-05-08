@@ -293,7 +293,7 @@ scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_
 scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_data/* .
 ```
 Pre- and post-trimming via MultiQC
-![pre-trimming bp quality](
+![pre-trimming bp quality](sagrei-cuba/FastQC/Raw/mac-raw_plots/mqc_fastqc_per_base_sequence_quality_plot_1.pdf)
 
 
 
