@@ -268,7 +268,7 @@ scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_data/
 Make a new directory and link fastq files
 ```
 mkdir trim
-ln -s /home/jpita/Final_assignment/data/*.fastq .mkdi
+ln -s /home/jpita/Final_assignment/data/*.fastq .
 ```
 Trimmomatic Version 0.36 was downloaded as binary and transfered from local computer to KITT
 ```
@@ -295,8 +295,15 @@ scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_
 Pre- and post-trimming via MultiQC (**include images**)
 
 ## <i>De novo</i> alignment
+Since *Anolis sagrei*'s reference genome is not published, I did a *De novo* Assembly using dDocent. 
+Install dDocent in conda environment (i.e. sagrei)
 ```
-dDocent
+conda install ddocent
+```
+Make a new directory for assembly and import raw gzipped FASTQ files
+```
+mkdir ddocent
+scp -P 2292 *.fastq.gz jpita@kitt.uri.edu:/home/jpita/Final_assignment/ddocent
 ```
 
 
@@ -305,5 +312,5 @@ dDocent
 ```
 ^Z
 bg
-disown -a
+disown -h
 ```
