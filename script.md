@@ -1,6 +1,6 @@
 # Double Digest RADseq: Geographic Structure in the Cuban Brown Anole (<i>Anolis sagrei</i>)
 ## Author: Jessica N. Pita Aquino<br>
-### Last updated: May 8, 2018
+### Last updated: May 9, 2018
 
 *Data was uploaded and analyzed on KITT.*
 <br>
@@ -439,7 +439,7 @@ At this point, all configuration information has been entered and dDocent may ta
 It is recommended that you move this script to a background operation and disable terminal input and output.
 All data and logfiles will still be recorded.
 ```
-**Put process to a background using:**
+Put process to a background using
 ```
 ^Z
 bg
