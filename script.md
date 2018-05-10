@@ -445,7 +445,7 @@ Put process to a background using
 bg
 disown -h
 ```
-## Filtering VCF files with dDocent
+## SNP filtering with dDocent
 http://ddocent.com
 
 ## Calculate pairwise Fst
