@@ -295,7 +295,7 @@ scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_
 Pre- and post-trimming via MultiQC (**include images**)
 
 ## <i>De novo</i> alignment
-Since *Anolis sagrei*'s reference genome is not published, I did a *De novo* Assembly using dDocent. 
+Since *Anolis sagrei*'s reference genome is not published, I did a *De novo* Assembly using **dDocent** (http://www.ddocent.com). 
 Install dDocent in conda environment (i.e. sagrei)
 ```
 conda install ddocent
@@ -446,5 +446,6 @@ bg
 disown -h
 ```
 ## Filtering VCF files with dDocent
+http://www.ddocent.com
 
 ## Calculate pairwise Fst
