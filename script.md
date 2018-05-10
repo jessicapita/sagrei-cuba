@@ -450,4 +450,7 @@ http://ddocent.com
 
 ## Calculate pairwise Fst
 
-## R packages (pcadapt, adegenet) and STRUCTURE: Generate PCA (individual variation), DAPC (individual variation and possible number of clusters) and STRUCTURE (allele frequencies to generate clusters) plots
+## R packages (pcadapt, adegenet) and STRUCTURE
+### Generate PCA (individual variation)
+### DAPC (individual variation and possible number of clusters)
+### STRUCTURE (allele frequencies to generate clusters) plots
