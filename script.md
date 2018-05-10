@@ -453,4 +453,4 @@ http://ddocent.com
 ## R packages (pcadapt, adegenet) and STRUCTURE
 ### Generate PCA (individual variation)
 ### DAPC (individual variation and possible number of clusters)
-### STRUCTURE (allele frequencies to generate clusters) plots
+### STRUCTURE plots (allele frequencies to generate clusters)
