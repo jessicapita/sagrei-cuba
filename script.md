@@ -445,9 +445,67 @@ Put process to a background using
 bg
 disown -h
 ```
-## SNP filtering with dDocent
-http://ddocent.com
-
+## SNP filtering with VCFtools
+```
+conda install vcftools
+```
+Since VCF files (dDocent output from previous step) have a lot of erroneous variant calls and variants that are only present in one individual, we need to filter these SNPs. <br>
+Copy and look at the data
+```
+mkdir SNPfiltering
+cp /home/jpita/Final_assignment/ddocent/raw.vcf/*vcf .
+ll
+```
+Output
+```
+total 2998872
+-rw-r--r--+ 1 jpita bio594  88125681 May 10 11:52 raw.01.vcf
+-rw-r--r--+ 1 jpita bio594  85515047 May 10 11:52 raw.02.vcf
+-rw-r--r--+ 1 jpita bio594  70722796 May 10 11:52 raw.03.vcf
+-rw-r--r--+ 1 jpita bio594  69333739 May 10 11:52 raw.04.vcf
+-rw-r--r--+ 1 jpita bio594  61812899 May 10 11:52 raw.05.vcf
+-rw-r--r--+ 1 jpita bio594  64658418 May 10 11:52 raw.06.vcf
+-rw-r--r--+ 1 jpita bio594  64315319 May 10 11:52 raw.07.vcf
+-rw-r--r--+ 1 jpita bio594  66461267 May 10 11:52 raw.08.vcf
+-rw-r--r--+ 1 jpita bio594  66454283 May 10 11:52 raw.09.vcf
+-rw-r--r--+ 1 jpita bio594  67738346 May 10 11:52 raw.10.vcf
+-rw-r--r--+ 1 jpita bio594  68231772 May 10 11:52 raw.11.vcf
+-rw-r--r--+ 1 jpita bio594  67673550 May 10 11:52 raw.12.vcf
+-rw-r--r--+ 1 jpita bio594  70335860 May 10 11:52 raw.13.vcf
+-rw-r--r--+ 1 jpita bio594  72051911 May 10 11:52 raw.14.vcf
+-rw-r--r--+ 1 jpita bio594  80778681 May 10 11:52 raw.15.vcf
+-rw-r--r--+ 1 jpita bio594  76046223 May 10 11:52 raw.16.vcf
+-rw-r--r--+ 1 jpita bio594  78084094 May 10 11:52 raw.17.vcf
+-rw-r--r--+ 1 jpita bio594  85363363 May 10 11:52 raw.18.vcf
+-rw-r--r--+ 1 jpita bio594  88208751 May 10 11:52 raw.19.vcf
+-rw-r--r--+ 1 jpita bio594  91197436 May 10 11:52 raw.20.vcf
+-rw-r--r--+ 1 jpita bio594  95409646 May 10 11:52 raw.21.vcf
+-rw-r--r--+ 1 jpita bio594  93721374 May 10 11:52 raw.22.vcf
+-rw-r--r--+ 1 jpita bio594 103638713 May 10 11:52 raw.23.vcf
+-rw-r--r--+ 1 jpita bio594 108482553 May 10 11:52 raw.24.vcf
+-rw-r--r--+ 1 jpita bio594 112221869 May 10 11:52 raw.25.vcf
+-rw-r--r--+ 1 jpita bio594 126576497 May 10 11:52 raw.26.vcf
+-rw-r--r--+ 1 jpita bio594 131839436 May 10 11:52 raw.27.vcf
+-rw-r--r--+ 1 jpita bio594 143322770 May 10 11:52 raw.28.vcf
+-rw-r--r--+ 1 jpita bio594 157319711 May 10 11:52 raw.29.vcf
+-rw-r--r--+ 1 jpita bio594 166116271 May 10 11:52 raw.30.vcf
+-rw-r--r--+ 1 jpita bio594 171316366 May 10 11:52 raw.31.vcf
+-rw-r--r--+ 1 jpita bio594 177711865 May 10 11:52 raw.32.vcf
+```
+To determine the raw number of SNP calls
+```
+cat Final.recode.vcf | grep -v "#" | wc -l
+```
+Output
+```
+581573
+```
+Apply a three step filter <br>
+Keep variants successfully genotypes in 70% of individuals, a minimum quality score of 30, and a minor allele frequency 5%. 
+```
+vcftools --gzvcf raw.**.vcf --max-missing 0.5 --mac 3 --minQ 30 --recode --recode-INFO-all --out raw.g5mac3
+```
+***** Find what parameters dDocent were used to outout Final.recode.vcf. We know that is more stringent for percent of successful genotypes... check min quality scores and minor allele frequencies. 
 ## Calculate pairwise Fst
 
 ## R packages (pcadapt, adegenet) and STRUCTURE
