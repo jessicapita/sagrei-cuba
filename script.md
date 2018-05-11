@@ -723,7 +723,10 @@ Transfer Fst script to a KITT
 ```
 scp -P 2292 *.sh jpita@kitt.uri.edu:/home/jpita/Final_assignment/FST
 ```
+This script was written and shared by D. Bock
+```
 
+```
 
 ## R packages (pcadapt, adegenet) and STRUCTURE
 ### Generate PCA (individual variation)
