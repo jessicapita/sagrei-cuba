@@ -1,6 +1,6 @@
 # Double Digest RADseq: Geographic Structure in the Cuban Brown Anole (<i>Anolis sagrei</i>)
 ## Author: Jessica N. Pita Aquino<br>
-### Last updated: May 9, 2018
+### Last updated: May 10, 2018
 
 *Data was uploaded and analyzed on KITT.*
 <br>
@@ -308,7 +308,7 @@ scp -P 2292 *.fastq.gz jpita@kitt.uri.edu:/home/jpita/Final_assignment/ddocent
 Rename raw reads to a specific convention. Files **must** contain a locality/population ID, as well as an individual ID, these separated by a single _ <br>
 For example: Pop1_Sample1.F.fq.gz Pop1_Sample1.R.fq.gz -> CAB_2918.F.fq.gz CAB_2918.R.fq.gz
 ```
-mv mv CAB2918_R1_.fastq.gz CAB_2918.F.fq.gz
+mv CAB2918_R1_.fastq.gz CAB_2918.F.fq.gz
 mv CAB2918_R2_.fastq.gz CAB_2918.R.fq.gz
 ```
 Run dDocent and specify parameters for analyses
@@ -501,12 +501,31 @@ Output
 581573
 ```
 Apply a three step filter <br>
-Keep variants successfully genotypes in 70% of individuals, a minimum quality score of 30, and a minor allele frequency 5%. 
+Keep variants successfully genotypes in 90% of individuals (completed in previous step with dDocent), a minimum quality score of 30, and a minor allele frequency 5%. 
 ```
-vcftools --gzvcf raw.**.vcf --max-missing 0.5 --mac 3 --minQ 30 --recode --recode-INFO-all --out raw.g5mac3
+vcftools --vcf Final.recode.vcf --maf 0.05  --minQ 30 --recode --recode-INFO-all --out snpfilter
 ```
-***** Find what parameters dDocent were used to outout Final.recode.vcf. We know that is more stringent for percent of successful genotypes... check min quality scores and minor allele frequencies. 
+Output
+```
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Final.recode.vcf
+	--recode-INFO-all
+	--maf 0.05
+	--minQ 30
+	--out snpfilter
+	--recode
+
+After filtering, kept 40 out of 40 Individuals
+Outputting VCF file...
+After filtering, kept 201327 out of a possible 581573 Sites
+Run Time = 47.00 seconds
+```
+
 ## Calculate pairwise Fst
+
 
 ## R packages (pcadapt, adegenet) and STRUCTURE
 ### Generate PCA (individual variation)
