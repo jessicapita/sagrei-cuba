@@ -723,9 +723,9 @@ Transfer Fst script to a KITT
 ```
 scp -P 2292 *.sh jpita@kitt.uri.edu:/home/jpita/Final_assignment/FST
 ```
-This script was written and shared by D. Bock
+This script was written and shared by D. Bock (upload it)
 ```
-
+bash convert_to_hierfstat.sh
 ```
 
 ## R packages (pcadapt, adegenet) and STRUCTURE
