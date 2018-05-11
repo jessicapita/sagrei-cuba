@@ -715,6 +715,14 @@ Only one individual out of 40 was removed
 
 
 ## Calculate pairwise Fst
+Create a new directory
+```
+mkdir FST
+```
+Transfer Fst script to a KITT
+```
+scp -P 2292 *.sh jpita@kitt.uri.edu:/home/jpita/Final_assignment/FST
+```
 
 
 ## R packages (pcadapt, adegenet) and STRUCTURE
