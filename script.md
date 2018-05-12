@@ -695,3 +695,4 @@ Output
 
 ### Generate PCA (individual variation)
 ### DAPC (individual variation and possible number of clusters)
+### STRUCTURE (allele frequencies to generate clusters)
