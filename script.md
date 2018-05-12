@@ -636,7 +636,7 @@ Run Time = 42.00 seconds
 Only one individual out of 40 was removed
 
 ## Calculate pairwise Fst
-*Analyses were done in R
+*Analyses were done in R*
 Load all the required R packages
 ```
 > library("adegenet")
@@ -694,4 +694,20 @@ Output
 ```
 
 ### Generate PCA (individual variation)
+*Analyses were done in R*
+```
+> X <- tab(my_genind, freq = TRUE, NA.method = "mean")
+> pca1 <- dudi.pca(X, scale = FALSE, scannf = FALSE, nf = 3)
+> barplot(pca1$eig[1:50], main = "PCA", col = heat.colors(50))
+> s.class(pca1$li, pop(my_genind))
+> title("PCA\naxes 1-2")
+> add.scatter.eig(pca1$eig[1:20], 3,1,2)
+> col <- funky(15)
+```
+*PCA was generated in XQuartz*
+```
+> s.class(pca1$li, pop(my_genind),xax=1,yax=2, col=col, axesell=FALSE, cstar=0, cpoint=3, grid=FALSE)
+```
+*PCA (PopA-D clusters) was generated in XQuartz*
+
 ### DAPC (individual variation and possible number of clusters)
