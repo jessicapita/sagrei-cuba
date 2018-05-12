@@ -1,6 +1,6 @@
 # Double Digest RADseq: Geographic Structure in the Cuban Brown Anole (<i>Anolis sagrei</i>)
 ## Author: Jessica N. Pita Aquino<br>
-### Last updated: May 10, 2018
+### Last updated: May 11, 2018
 
 *Data was uploaded and analyzed on KITT.*
 <br>
@@ -216,86 +216,9 @@ SOR3020_R2_.fastq:2564327
 SOR3021_R1_.fastq:3362598
 SOR3021_R2_.fastq:3362598
 ```
-
-
-## Quality Control and Trimming
-### Create a environment with conda
-```
-conda create -n sagrei
-```
-To activate this environment, use:
-```
-source activate sagrei
-```
-To deactivate an active environment, use:
-```
-source deactivate sagrei
-```
-
-### Determine data quality using FastQC
-https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-### <br>Non-interactive FastQC </br>
-<br> To download FastQC v0.11.7 I used the following command line </br>
-```
-conda install fastqc
-```
-Data files were uncompressed
-```
-gunzip *.gz
-```
-
-FastQC Analysis for each sample
-```
-fastqc *.fastq -o /home/jpita/Final_assignment/FastQC/
-```
-
-### Summarize FastQC results using MultiQC
-https://github.com/ewels/MultiQC
-```
-pip install multiqc
-conda install -c bioconda multiqc
-multiqc -p . #the -p/--export command line flag allows you to save the generated plots
-```
-Export MultiQC files to 
-system
-```
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_plots/pdf/mqc_* .
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_report.html .
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC/multiqc_data/* .
-```
-
-### Trim adapters and low quality reads
-Make a new directory and link fastq files
-```
-mkdir trim
-ln -s /home/jpita/Final_assignment/data/*.fastq .
-```
-Trimmomatic Version 0.36 was downloaded as binary and transfered from local computer to KITT
-```
-scp -rp -P 2292 trimmomatic-0.36 jpita@kitt.uri.edu:/home/jpita/Final_assignment/trim 
-ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/trimmomatic-0.36.jar .
-ln -s /home/jpita/Final_assignment/trim/trimmomatic-0.36/adapters/* .
-```
-Trim adapters (TrueSeq3-PE-2) and low quality reads (quality threshold: 20) for each sample (e.g. MAR2990)
-```
-java -jar trimmomatic-0.36.jar PE -threads 20 -phred33 -trimlog MAR2990.trimlog MAR2990_R1_.fastq.gz MAR2990_R2_.fastq.gz MAR2990_trim_R1_.fastq.gz MAR2990_unpaired_R1_.fastq.gz MAR2990_trim_R2_.fastq.gz MAR2990_unpaired_R2_.fastq.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:3:15 MINLEN:36 > MAR2990.trimSTDOUT
-```
-
-### Rerun FastQC/MultiQC for trimmed reads
-```
-fastqc *_trim_R*_.fastq.gz -o /home/jpita/Final_assignment/FastQC_trim/
-multiqc -p .
-```
-Export MultiQC files to local system
-```
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_plots/pdf/mqc_* .
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_report.html .
-scp -P 2292 jpita@kitt.uri.edu:/home/jpita/Final_assignment/FastQC_trim/multiqc_data/* .
-```
-Pre- and post-trimming via MultiQC (**include images**)
-
 ## <i>De novo</i> alignment
 Since *Anolis sagrei*'s reference genome is not published, I did a *De novo* Assembly using **dDocent** (http://ddocent.com). 
+<br>
 Install dDocent in conda environment (i.e. sagrei)
 ```
 conda install ddocent
@@ -710,9 +633,7 @@ Outputting VCF file...
 After filtering, kept 201327 out of a possible 201327 Sites
 Run Time = 42.00 seconds
 ```
-Only one individual out of 40 was removed
-
-
+Only one individual out of 40 was removed.
 
 ## Calculate pairwise Fst
 Create a new directory
@@ -723,7 +644,7 @@ Transfer Fst script to a KITT
 ```
 scp -P 2292 *.sh jpita@kitt.uri.edu:/home/jpita/Final_assignment/FST
 ```
-This script was written and shared by D. Bock (upload it)
+This script was written and shared by D. Bock
 ```
 bash convert_to_hierfstat.sh
 ```
