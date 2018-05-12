@@ -217,7 +217,7 @@ SOR3021_R1_.fastq:3362598
 SOR3021_R2_.fastq:3362598
 ```
 ## <i>De novo</i> alignment
-Since *Anolis sagrei*'s reference genome is not published, I did a *De novo* Assembly using **dDocent** (http://ddocent.com). 
+Since *Anolis sagrei*'s reference genome is not published, I did a *De novo* Assembly using **dDocent** (http://ddocent.com) 
 <br>
 Install dDocent in conda environment (i.e. sagrei)
 ```
@@ -373,7 +373,7 @@ Following a script by J. Puritz (https://github.com/jpuritz/dDocent/blob/master/
 ```
 conda install vcftools
 ```
-Since VCF files (dDocent output from previous step) have a lot of erroneous variant calls and variants that are only present in one individual, we need to filter these SNPs. <br>
+Since VCF files (dDocent output from previous step) have a lot of erroneous variant calls and variants that are only present in one individual, we need to filter these SNPs <br>
 Copy and look at the data
 ```
 mkdir SNPfiltering
@@ -427,7 +427,7 @@ Output
 581573
 ```
 Apply a three step filter <br>
-Keep variants successfully genotypes in 90% of individuals (completed in previous step with dDocent), a minimum quality score of 30, and a minor allele frequency 5%. 
+Keep variants successfully genotypes in 90% of individuals (completed in previous step with dDocent), a minimum quality score of 30, and a minor allele frequency 5%
 ```
 vcftools --vcf Final.recode.vcf --maf 0.05  --minQ 30 --recode --recode-INFO-all --out raw.maf5mq30
 ```
@@ -449,7 +449,7 @@ Outputting VCF file...
 After filtering, kept 201327 out of a possible 581573 Sites
 Run Time = 47.00 seconds
 ```
-The next filter is a minimum depth for a genotype call and a minimum mean depth. This command will recode genotypes that have less than 3 reads.
+The next filter is a minimum depth for a genotype call and a minimum mean depth. This command will recode genotypes that have less than 3 reads
 ```
 vcftools --vcf raw.maf5mq30.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.maf5mq30dp3 
 ```
@@ -492,7 +492,7 @@ SCORCHED EARTH SCENARIO
 WHAT IF ALL LOW DEPTH HOMOZYGOTE GENOTYPES ARE ERRORS?????
 The total SCORCHED EARTH error rate is 0.06426390776564905.
 ```
-Remove individuals that did not sequence well by assessing individual levels of missing data.
+Remove individuals that did not sequence well by assessing individual levels of missing data
 ```
 vcftools --vcf raw.maf5mq30dp3.recode.vcf --missing-indv
 ```
@@ -557,7 +557,7 @@ SOR_3017	201327	0	19745	0.0980743
 SOR_3020	201327	0	16653	0.0827162
 SOR_3021	201327	0	16489	0.0819016
 ```
-Let's view it as a Histogram
+Let's view it as a histogram
 ```
 mawk '!/IN/' out.imiss | cut -f5 > totalmissing
 gnuplot << \EOF 
@@ -606,8 +606,8 @@ Output
                                                     % of missing data
 
 ```
-Most of the individuals have less than 0.1 missing data. <br> <br>
-Create a list of individuals with more than 30% missing data.
+Most of the individuals have less than 0.1 missing data <br> <br>
+Create a list of individuals with more than 30% missing data
 ```
 mawk '$5 > 0.3' out.imiss | cut -f1 > lowDP.indv
 ```
@@ -633,7 +633,7 @@ Outputting VCF file...
 After filtering, kept 201327 out of a possible 201327 Sites
 Run Time = 42.00 seconds
 ```
-Only one individual out of 40 was removed.
+Only one individual out of 40 was removed
 
 ## Calculate pairwise Fst
 Create a new directory
