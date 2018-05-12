@@ -648,8 +648,12 @@ This script was written and shared by D. Bock
 ```
 bash convert_to_hierfstat.sh
 ```
-
-## R packages (pcadapt, adegenet) and STRUCTURE
+Commands were executed in R Studio <br>
+Install required R packages 
+```
+> install.packages("diveRsity")
+```
+## R packages (adegenet) and STRUCTURE
 ### Generate PCA (individual variation)
 ### DAPC (individual variation and possible number of clusters)
 ### STRUCTURE plots (allele frequencies to generate clusters)
