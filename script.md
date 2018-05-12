@@ -654,6 +654,63 @@ Install required R packages
 > install.packages("diveRsity")
 ```
 ## R packages (adegenet) and STRUCTURE
+Load all the required R packages
+```
+> library("adegenet")
+> library(vcfR)
+> library("hierfstat")
+```
+Import samples_population.txt and VCF file
+```
+> popinfo <- read.table("samples_population.txt", header=TRUE)
+> popinfo_df <- data.frame(popinfo)
+> my_vcf <- read.vcfR("raw.maf5mq30dp3ldp.recode.vcf")
+Scanning file to determine attributes.
+File attributes:
+  meta lines: 60
+  header_line: 61
+  variant count: 201327
+  column count: 48
+Meta line 60 read in.
+All meta lines processed.
+gt matrix initialized.
+Character matrix gt created.
+  Character matrix gt rows: 201327
+  Character matrix gt cols: 48
+  skip: 0
+  nrows: 201327
+  row_num: 0
+Processed variant: 201327
+All variants processed
+```
+Change format
+```
+> my_genind <- vcfR2genind(my_vcf)
+```
+```
+> my_genind
+```
+Output
+```
+
+```
+```
+> popinfo(my_genind) <- popinfo_df
+```
+Assign populations to this data
+```
+> setPop(my_genind) <- ~Pop
+> fstat(my_genind)
+```
+Output
+
+
+```
+> matFst <- pairwise.fst(my_genind)
+```
+
+
+
 ### Generate PCA (individual variation)
 ### DAPC (individual variation and possible number of clusters)
 ### STRUCTURE plots (allele frequencies to generate clusters)
