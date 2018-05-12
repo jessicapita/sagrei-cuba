@@ -426,10 +426,25 @@ Output
 ```
 581573
 ```
-Apply a three step filter <br>
+**Apply a three step filter** <br>
+```
+mkdir PCA
+```
+Copy *Final.recode.vcf* file generated in dDocent
+```
+cp /home/jpita/Final_assignment/ddocent/Final.recode.vcf .
+```
+Transfer *vcfbiallelic* to KITT, which only keep biallelic markers
+```
+scp -P 2292 vcfbiallelic jpita@kitt.uri.edu:/home/jpita/Final_assignment/PCA/
+```
+Run *vcfbiallelic*
+```
+./vcfbiallelic < Final.recode.vcf > Final.recode.biallelic.vcf
+```
 Keep variants successfully genotypes in 90% of individuals (completed in previous step with dDocent), a minimum quality score of 30, and a minor allele frequency 5%
 ```
-vcftools --vcf Final.recode.vcf --maf 0.05  --minQ 30 --recode --recode-INFO-all --out raw.maf5mq30
+vcftools --vcf Final.recode.biallelic.vcf --maf 0.05  --minQ 30 --recode --recode-INFO-all --out ba.maf5mq30
 ```
 Output
 ```
@@ -437,44 +452,44 @@ VCFtools - 0.1.14
 (C) Adam Auton and Anthony Marcketta 2009
 
 Parameters as interpreted:
-	--vcf Final.recode.vcf
+	--vcf Final.recode.biallelic.vcf
 	--recode-INFO-all
 	--maf 0.05
 	--minQ 30
-	--out raw.maf5mq30
+	--out ba.maf5mq30
 	--recode
 
 After filtering, kept 40 out of 40 Individuals
 Outputting VCF file...
-After filtering, kept 201327 out of a possible 581573 Sites
-Run Time = 47.00 seconds
+After filtering, kept 181060 out of a possible 453873 Sites
+Run Time = 40.00 seconds
 ```
 The next filter is a minimum depth for a genotype call and a minimum mean depth. This command will recode genotypes that have less than 3 reads
 ```
-vcftools --vcf raw.maf5mq30.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.maf5mq30dp3 
+vcftools --vcf ba.maf5mq30.recode.vcf --minDP 3 --recode --recode-INFO-all --out ba.maf5mq30dp3 
 ```
 Output
 ```
-VCFtools - 0.1.15
+VCFtools - 0.1.14
 (C) Adam Auton and Anthony Marcketta 2009
 
 Parameters as interpreted:
-	--vcf raw.maf5mq30.recode.vcf
+	--vcf ba.maf5mq30.recode.vcf
 	--recode-INFO-all
 	--minDP 3
-	--out raw.maf5mq30dp3
+	--out ba.maf5mq30dp3
 	--recode
 
 After filtering, kept 40 out of 40 Individuals
 Outputting VCF file...
-After filtering, kept 201327 out of a possible 201327 Sites
-Run Time = 30.00 seconds
+After filtering, kept 181060 out of a possible 181060 Sites
+Run Time = 36.00 seconds
 ```
 Verify potential errors
 ```
 curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/ErrorCount.sh
 chmod +x ErrorCount.sh 
-./ErrorCount.sh raw.maf5mq30dp3.recode.vcf 
+./ErrorCount.sh ba.maf5mq30dp3.recode.vcf 
 ```
 Output
 ```
@@ -482,33 +497,33 @@ This script counts the number of potential genotyping errors due to low read dep
 It report a low range, based on a 50% binomial probability of observing the second allele in a heterozygote and a high range based on a 25% probability.
 Potential genotyping errors from genotypes from only 1 read range from 0.0 to 0.0
 Potential genotyping errors from genotypes from only 2 reads range from 0.0 to 0.0
-Potential genotyping errors from genotypes from only 3 reads range from 21713.875 to 72958.62
-Potential genotyping errors from genotypes from only 4 reads range from 10902.6875 to 55123.988
-Potential genotyping errors from genotypes from only 5 reads range from 5292.53125 to 40138
-40 number of individuals and 201327 equals 8053080 total genotypes
-Total genotypes not counting missing data 8052965
-Total potential error rate is between 0.004707470323042507 and 0.020889275937496316
+Potential genotyping errors from genotypes from only 3 reads range from 19812.25 to 66569.16
+Potential genotyping errors from genotypes from only 4 reads range from 9990.5 to 50511.968
+Potential genotyping errors from genotypes from only 5 reads range from 4857.1875 to 36836
+40 number of individuals and 181060 equals 7242400 total genotypes
+Total genotypes not counting missing data 7242290
+Total potential error rate is between 0.004785770453820545 and 0.021252549676966815
 SCORCHED EARTH SCENARIO
 WHAT IF ALL LOW DEPTH HOMOZYGOTE GENOTYPES ARE ERRORS?????
-The total SCORCHED EARTH error rate is 0.06426390776564905.
+The total SCORCHED EARTH error rate is 0.06541798243373298
 ```
 Remove individuals that did not sequence well by assessing individual levels of missing data
 ```
-vcftools --vcf raw.maf5mq30dp3.recode.vcf --missing-indv
+vcftools --vcf ba.maf5mq30dp3.recode.vcf --missing-indv
 ```
 Output
 ```
-VCFtools - 0.1.15
+VCFtools - 0.1.14
 (C) Adam Auton and Anthony Marcketta 2009
 
 Parameters as interpreted:
-	--vcf raw.maf5mq30dp3.recode.vcf
+	--vcf ba.maf5mq30dp3.recode.vcf
 	--missing-indv
 
 After filtering, kept 40 out of 40 Individuals
 Outputting Individual Missingness
-After filtering, kept 201327 out of a possible 201327 Sites
-Run Time = 3.00 seconds
+After filtering, kept 181060 out of a possible 181060 Sites
+Run Time = 2.00 seconds
 ```
 Examine output
 ```
@@ -516,46 +531,46 @@ cat out.imiss
 ```
 ```
 INDV	N_DATA	N_GENOTYPES_FILTERED	N_MISS	F_MISS
-CAB_2918	201327	0	18332	0.0910558
-CAB_2919	201327	0	17923	0.0890243
-CAB_2920	201327	0	23516	0.116805
-CAB_2921	201327	0	16956	0.0842212
-CAB_2922	201327	0	20853	0.103578
-CAB_2923	201327	0	17960	0.0892081
-CAB_2924	201327	0	16577	0.0823387
-CAB_2925	201327	0	21267	0.105634
-CAB_2927	201327	0	20232	0.100493
-CAB_2931	201327	0	25252	0.125428
-ESM_2880	201327	0	3096	0.015378
-ESM_2882	201327	0	13480	0.0669557
-ESM_2883	201327	0	13504	0.067075
-ESM_2886	201327	0	19786	0.0982779
-ESM_2887	201327	0	13566	0.0673829
-ESM_2888	201327	0	14418	0.0716148
-ESM_2893	201327	0	16956	0.0842212
-ESM_2895	201327	0	12326	0.0612238
-ESM_2896	201327	0	15002	0.0745156
-ESM_2897	201327	0	17199	0.0854282
-MAR_2971	201327	0	12781	0.0634838
-MAR_2972	201327	0	15386	0.0764229
-MAR_2973	201327	0	12336	0.0612735
-MAR_2974	201327	0	84741	0.420912
-MAR_2975	201327	0	9595	0.0476588
-MAR_2977	201327	0	21328	0.105937
-MAR_2979	201327	0	8502	0.0422298
-MAR_2980	201327	0	18478	0.091781
-MAR_2981	201327	0	10479	0.0520497
-MAR_2990	201327	0	13499	0.0670501
-SOR_3003	201327	0	35341	0.17554
-SOR_3005	201327	0	10764	0.0534653
-SOR_3006	201327	0	11280	0.0560283
-SOR_3007	201327	0	7201	0.0357677
-SOR_3011	201327	0	15800	0.0784793
-SOR_3012	201327	0	11686	0.0580449
-SOR_3013	201327	0	10058	0.0499585
-SOR_3017	201327	0	19745	0.0980743
-SOR_3020	201327	0	16653	0.0827162
-SOR_3021	201327	0	16489	0.0819016
+CAB_2918	181060	0	16040	0.0885894
+CAB_2919	181060	0	15631	0.0863305
+CAB_2920	181060	0	20698	0.114316
+CAB_2921	181060	0	14901	0.0822987
+CAB_2922	181060	0	18323	0.101198
+CAB_2923	181060	0	15845	0.0875124
+CAB_2924	181060	0	14632	0.080813
+CAB_2925	181060	0	18722	0.103402
+CAB_2927	181060	0	17732	0.0979344
+CAB_2931	181060	0	22238	0.122821
+ESM_2880	181060	0	2696	0.0148901
+ESM_2882	181060	0	11732	0.0647962
+ESM_2883	181060	0	11888	0.0656578
+ESM_2886	181060	0	17450	0.0963769
+ESM_2887	181060	0	11851	0.0654534
+ESM_2888	181060	0	12712	0.0702088
+ESM_2893	181060	0	14883	0.0821993
+ESM_2895	181060	0	10807	0.0596874
+ESM_2896	181060	0	13214	0.0729813
+ESM_2897	181060	0	15117	0.0834917
+MAR_2971	181060	0	11127	0.0614548
+MAR_2972	181060	0	13474	0.0744173
+MAR_2973	181060	0	10724	0.059229
+MAR_2974	181060	0	75898	0.419187
+MAR_2975	181060	0	8310	0.0458964
+MAR_2977	181060	0	18726	0.103424
+MAR_2979	181060	0	7369	0.0406992
+MAR_2980	181060	0	16225	0.0896112
+MAR_2981	181060	0	9147	0.0505192
+MAR_2990	181060	0	11732	0.0647962
+SOR_3003	181060	0	31448	0.173688
+SOR_3005	181060	0	9447	0.0521761
+SOR_3006	181060	0	9789	0.054065
+SOR_3007	181060	0	6297	0.0347785
+SOR_3011	181060	0	14034	0.0775102
+SOR_3012	181060	0	10389	0.0573788
+SOR_3013	181060	0	8888	0.0490887
+SOR_3017	181060	0	17338	0.0957583
+SOR_3020	181060	0	14727	0.0813377
+SOR_3021	181060	0	14502	0.080095
 ```
 Let's view it as a histogram
 ```
@@ -578,31 +593,31 @@ Output
 ```
                                        Histogram of % missing data per individual
 
-  8 ++----------+-------***--+-----------+------------+-----------+------------+-----------+------------+----------++
-    +           +       * *  +           +            +        'totalmissing' using (bin($1,binwidth)):(1.0) ****** +
-    |                   * *                                                                                         |
-  7 ++             ***  * *                                                                                        ++
-    |              * *  * *                                                                                         |
-    |              * *  * *                                                                                         |
-    |              * *  * *                                                                                         |
-  6 ++             * *  * *                                                                                        ++
-    |              * *  * *                                                                                         |
-    |              * *  * *                                                                                         |
-  5 ++             * *  * *                                                                                        ++
-    |              * *  * *                                                                                         |
-    |              * *  * *                                                                                         |
-  4 ++          **** **** ******                                                                                   ++
-    |           *  * *  * *  * *                                                                                    |
-    |           *  * *  * *  * *                                                                                    |
-  3 ++        ***  * *  * *  * *                                                                                   ++
-    |         * *  * *  * *  * *                                                                                    |
-    |         * *  * *  * *  * *                                                                                    |
-    |         * *  * *  * *  * *                                                                                    |
-  2 ++        * *  * *  * *  * *                                                                                   ++
-    |         * *  * *  * *  * *                                                                                    |
-    +         * *  * *  * *  * *         +            +           +            +           +            +           +
-  1 ++--------******************---------+------------+-----------+------------+-----------+------------+----------++
-    0          0.05         0.1         0.15         0.2         0.25         0.3         0.35         0.4         0.45
+  10 ++----------+-------***--+-----------+-----------+------------+-----------+-----------+------------+----------++
+     +           +       * *  +           +           +        'totalmissing' using (bin($1,binwidth)):(1.0) ****** +
+     |                   * *                                                                                        |
+   9 ++                  * *                                                                                       ++
+     |                   * *                                                                                        |
+   8 ++                  * *                                                                                       ++
+     |                   * *                                                                                        |
+     |                   * *                                                                                        |
+   7 ++                  * *                                                                                       ++
+     |                   * *                                                                                        |
+   6 ++          ****    * *                                                                                       ++
+     |           *  *    * *                                                                                        |
+     |           *  *    * *                                                                                        |
+   5 ++          *  ***  * *                                                                                       ++
+     |           *  * *  * *                                                                                        |
+   4 ++          *  * **** *                                                                                       ++
+     |           *  * *  * *                                                                                        |
+     |           *  * *  * *                                                                                        |
+   3 ++        ***  * *  * ******                                                                                  ++
+     |         * *  * *  * *  * *                                                                                   |
+   2 ++        * *  * *  * *  * *                                                                                  ++
+     |         * *  * *  * *  * *                                                                                   |
+     +         * *  * *  * *  * *         +           +            +           +           +            +           +
+   1 ++--------******************---------+-----------+------------+-----------+-----------+------------+----------++
+     0          0.05         0.1         0.15        0.2          0.25        0.3         0.35         0.4         0.45
                                                     % of missing data
 
 ```
@@ -613,7 +628,7 @@ mawk '$5 > 0.3' out.imiss | cut -f1 > lowDP.indv
 ```
 Remove individuals with more than 30% of missing data
 ```
-vcftools --vcf raw.maf5mq30dp3.recode.vcf --remove lowDP.indv --recode --recode-INFO-all --out raw.maf5mq30dp3ldp
+vcftools --vcf ba.maf5mq30dp3.recode.vcf --remove lowDP.indv --recode --recode-INFO-all --out ba.maf5mq30dp3ldp
 ```
 Output
 ```
@@ -621,93 +636,19 @@ VCFtools - 0.1.14
 (C) Adam Auton and Anthony Marcketta 2009
 
 Parameters as interpreted:
-	--vcf raw.maf5mq30dp3.recode.vcf
+	--vcf ba.maf5mq30dp3.recode.vcf
 	--exclude lowDP.indv
 	--recode-INFO-all
-	--out raw.maf5mq30dp3ldp
+	--out ba.maf5mq30dp3ldp
 	--recode
 
 Excluding individuals in 'exclude' list
 After filtering, kept 39 out of 40 Individuals
 Outputting VCF file...
-After filtering, kept 201327 out of a possible 201327 Sites
-Run Time = 42.00 seconds
+After filtering, kept 181060 out of a possible 181060 Sites
+Run Time = 35.00 seconds
 ```
 Only one individual out of 40 was removed
 
-## Calculate pairwise Fst
-*Analyses were done in R*
-Load all the required R packages
-```
-> library("adegenet")
-> library(vcfR)
-> library("hierfstat")
-```
-Import samples_population.txt and VCF file
-```
-> popinfo <- read.table("samples_population.txt", header=TRUE)
-> popinfo_df <- data.frame(popinfo)
-> my_vcf <- read.vcfR("raw.maf5mq30dp3ldp.recode.vcf")
-Scanning file to determine attributes.
-File attributes:
-  meta lines: 60
-  header_line: 61
-  variant count: 201327
-  column count: 48
-Meta line 60 read in.
-All meta lines processed.
-gt matrix initialized.
-Character matrix gt created.
-  Character matrix gt rows: 201327
-  Character matrix gt cols: 48
-  skip: 0
-  nrows: 201327
-  row_num: 0
-Processed variant: 201327
-All variants processed
-```
-Change format
-```
-> my_genind <- vcfR2genind(my_vcf)
-```
-```
-> my_genind
-```
-Output
-```
-
-```
-```
-> popinfo(my_genind) <- popinfo_df
-```
-Assign populations to this data
-```
-> setPop(my_genind) <- ~Pop
-> fstat(my_genind)
-```
-Output
-```
-```
-
-```
-> matFst <- pairwise.fst(my_genind)
-```
-
-### Generate PCA (individual variation)
-*Analyses were done in R*
-```
-> X <- tab(my_genind, freq = TRUE, NA.method = "mean")
-> pca1 <- dudi.pca(X, scale = FALSE, scannf = FALSE, nf = 3)
-> barplot(pca1$eig[1:50], main = "PCA", col = heat.colors(50))
-> s.class(pca1$li, pop(my_genind))
-> title("PCA\naxes 1-2")
-> add.scatter.eig(pca1$eig[1:20], 3,1,2)
-> col <- funky(15)
-```
-*PCA was generated in XQuartz*
-```
-> s.class(pca1$li, pop(my_genind),xax=1,yax=2, col=col, axesell=FALSE, cstar=0, cpoint=3, grid=FALSE)
-```
-*PCA (PopA-D clusters) was generated in XQuartz*
-
-### DAPC (individual variation and possible number of clusters)
+## PCA
+Change format vcf -> adegenet
