@@ -636,24 +636,7 @@ Run Time = 42.00 seconds
 Only one individual out of 40 was removed
 
 ## Calculate pairwise Fst
-Create a new directory
-```
-mkdir FST
-```
-Transfer Fst script to a KITT
-```
-scp -P 2292 *.sh jpita@kitt.uri.edu:/home/jpita/Final_assignment/FST
-```
-This script was written and shared by D. Bock
-```
-bash convert_to_hierfstat.sh
-```
-Commands were executed in R Studio <br>
-Install required R packages 
-```
-> install.packages("diveRsity")
-```
-## R packages (adegenet) and STRUCTURE
+*Analyses were done in R
 Load all the required R packages
 ```
 > library("adegenet")
@@ -703,13 +686,12 @@ Assign populations to this data
 > fstat(my_genind)
 ```
 Output
-
+```
+```
 
 ```
 > matFst <- pairwise.fst(my_genind)
 ```
-
-
 
 ### Generate PCA (individual variation)
 ### DAPC (individual variation and possible number of clusters)
