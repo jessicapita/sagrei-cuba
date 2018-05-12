@@ -16,14 +16,13 @@ For this study I will analyze ddRAD-seq data for native populations of the Cuban
 - Populations (N=4): Esmerelda (ESM; Eastern Cuba), Caibarien (CAB; Central Cuba), Mariel (MAR; Western Cuba), Soroa (SOR; Western Cuba)
 
 ## Analysis Plan
--	FastQC: Examine data quality
--	Trimmomatic: Trim adapters and low quality reads
--	dDocent: Make a de novo assembly, SNP calling and filtering 
--	VCFtools: Calculate pairwise Fst among all populations
+- dDocent: Examine data quality (FastQC), trim adapters and low quality reads (Timmomatic), and a *de novo* assembly
+- VCFtools: SNP calling and filtering
+- R package diveRsity: Calculate pairwise Fst among all populations
 -	R packages (pcadapt, adegenet) and STRUCTURE: Generate PCA (individual variation), DAPC (individual variation and possible number of clusters) and STRUCTURE (allele frequencies to generate clusters) plots
 
 ## References
-Kolbe, J., Glor, R., Rodríguez Schettino, L., Chamizo Lara, A., Larson, A., Losos, J. (2004). Genetic variation increases during biological invasion by a Cuban lizard. Nature. 431. 177-81. 10.1038/nature02807.
+Kolbe, J., Glor, R., Rodríguez Schettino, L.,  Chamizo Lara, A., Larson, A., Losos, J. (2004). Genetic variation increases during biological invasion by a Cuban lizard. Nature. 431. 177-81. 10.1038/nature02807.
 <br>
 <br>
 Puritz, J. B., Hollenbeck, C. M. & Gold, J. R. (2014). dDocent: a RADseq, variant-calling pipeline designed for population genomics of non-model organisms. PeerJ 2, e431. doi:10.7717/peerj.431.
