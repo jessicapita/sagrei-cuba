@@ -665,3 +665,7 @@ Run [*PCA_script.R*](https://github.com/jessicapita/sagrei-cuba/blob/master/PCA_
 <br>
 **PCA-plot Output** <br> <br>
 ![](https://github.com/jessicapita/sagrei-cuba/blob/master/PCA-Rplot.png?raw=true)
+
+<br>
+**Sample localities (Cuba)** <br>
+![](https://github.com/jessicapita/sagrei-cuba/blob/master/CubaSites_sagrei.png?raw=true)
