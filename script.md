@@ -650,7 +650,7 @@ Run Time = 35.00 seconds
 ```
 Only one individual out of 40 was removed
 
-To keep only SNPs (remove indel polymorphisms) I used *vcffilter* 
+To keep only SNPs (remove INDEL polymorphisms) I used *vcffilter* 
 ```
 vcffilter -f "TYPE = snp" ba.maf5mq30dp3ldp.recode.vcf > ba.maf5mq30dp3ldp.recode.snps.vcf
 grep -v "#" ba.maf5mq30dp3ldp.recode.snps.vcf | wc -l   #Output: 169375
