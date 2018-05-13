@@ -14,6 +14,10 @@ For this study I will analyze ddRAD-seq data for native populations of the Cuban
 - Location: Data will be located and analyzed in KITT
 - Size: The average number of reads is 2519999
 - Populations (N=4): Esmerelda (ESM; Eastern Cuba), Caibarien (CAB; Central Cuba), Mariel (MAR; Western Cuba), Soroa (SOR; Western Cuba)
+<br>
+**Sample localities (Cuba)** <br>
+![](https://github.com/jessicapita/sagrei-cuba/blob/master/CubaSites_sagrei.png?raw=true)
+<br>
 
 ## Analysis Plan
 - dDocent: Examine data quality (FastQC), trim adapters and low quality reads (Timmomatic), and a *de novo* assembly
