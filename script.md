@@ -656,7 +656,7 @@ vcffilter -f "TYPE = snp" ba.maf5mq30dp3ldp.recode.vcf > ba.maf5mq30dp3ldp.recod
 grep -v "#" ba.maf5mq30dp3ldp.recode.snps.vcf | wc -l   #Output: 169375
 ```
 ## PCA
-Change format vcf -> adegenet with *vcf_to_adegenet.sh*
+Change format vcf -> adegenet with [*vcf_to_adegenet.sh*](https://github.com/jessicapita/sagrei-cuba/blob/master/vcf_to_adegenet.sh)
 ```
 bash vcf_to_adegenet.sh
 ```
