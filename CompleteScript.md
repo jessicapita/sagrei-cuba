@@ -655,7 +655,7 @@ To keep only SNPs (remove INDEL polymorphisms) use *vcffilter*
 vcffilter -f "TYPE = snp" ba.maf5mq30dp3ldp.recode.vcf > ba.maf5mq30dp3ldp.recode.snps.vcf
 grep -v "#" ba.maf5mq30dp3ldp.recode.snps.vcf | wc -l   #Output: 169375
 ```
-## Principal Component Analyses (PCA)
+## Principal Components Analyses (PCA)
 Change format vcf -> adegenet with [*vcf_to_adegenet.sh*](https://github.com/jessicapita/sagrei-cuba/blob/master/vcf_to_adegenet.sh)
 ```
 bash vcf_to_adegenet.sh
@@ -670,3 +670,4 @@ Run [*PCA_script.R*](https://github.com/jessicapita/sagrei-cuba/blob/master/PCA_
 **Sample localities (Cuba)** <br>
 ![](https://github.com/jessicapita/sagrei-cuba/blob/master/CubaSites_sagrei.png?raw=true)
 <br>
+These results show that native range populations are still genetically structured, such as substantial divergence among East Cuba and West Cuba populations due to geographical distance. A close relationship is shown to exist between the correlation of geographic distance and genetic differentiation among popultions. Adyacent populations (i.e. SOR, MAR) are more genetically similar compared to distanced populations (MAR, ESM).
