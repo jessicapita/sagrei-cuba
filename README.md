@@ -19,6 +19,7 @@ For this study I will analyze ddRAD-seq data for native populations of the Cuban
 **Sample localities (Cuba)** <br>
 ![](https://github.com/jessicapita/sagrei-cuba/blob/master/CubaSites_sagrei.png?raw=true)
 <br>
+<br>
 ## Analysis Plan
 - dDocent: Examine data quality (FastQC), trim adapters and low quality reads (Timmomatic), and a *de novo* assembly
 - VCFtools: SNP calling and filtering
