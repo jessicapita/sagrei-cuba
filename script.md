@@ -655,7 +655,7 @@ To keep only SNPs (remove INDEL polymorphisms) use *vcffilter*
 vcffilter -f "TYPE = snp" ba.maf5mq30dp3ldp.recode.vcf > ba.maf5mq30dp3ldp.recode.snps.vcf
 grep -v "#" ba.maf5mq30dp3ldp.recode.snps.vcf | wc -l   #Output: 169375
 ```
-## PCA
+## Principal Component Analyses (PCA)
 Change format vcf -> adegenet with [*vcf_to_adegenet.sh*](https://github.com/jessicapita/sagrei-cuba/blob/master/vcf_to_adegenet.sh)
 ```
 bash vcf_to_adegenet.sh
