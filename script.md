@@ -663,5 +663,5 @@ bash vcf_to_adegenet.sh
 Run [*PCA_script.R*](https://github.com/jessicapita/sagrei-cuba/blob/master/PCA_script.R) in R Studio (http://kitt.uri.edu:8787)
 <br>
 <br>
-**PCA-plot Output**<br>
+**PCA-plot Output** <br> <br>
 ![](https://github.com/jessicapita/sagrei-cuba/blob/master/PCA-Rplot.png?raw=true)
