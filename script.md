@@ -660,5 +660,5 @@ Change format vcf -> adegenet with [*vcf_to_adegenet.sh*](https://github.com/jes
 ```
 bash vcf_to_adegenet.sh
 ```
-Run *PCA_script.R* in R Studio (http://kitt.uri.edu:8787)
+Run [*PCA_script.R*](https://github.com/jessicapita/sagrei-cuba/blob/master/PCA_script.R) in R Studio (http://kitt.uri.edu:8787)
 ```
